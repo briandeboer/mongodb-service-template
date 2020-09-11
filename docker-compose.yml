@@ -1,16 +1,16 @@
 version: "3"
 services:
-  sample-project:
-    image: sample-project:latest
+  {{project-name}}:
+    image: {{project-name}}:latest
     ports:
       - 8084:8000
     environment:
       PORT: 8000
       API_BASE: http://localhost:8084
       MONGO_URL: mongodb://mongo:27017/
-      MONGO_DB_NAME: sample-project
+      MONGO_DB_NAME: {{project-name}}
       RUST_LOG: info,surf=warn,actix_web=info
-      BASE_PATH: sample-project
+      BASE_PATH: {{project-name}}
       VERSION: v1
       CERTS: https://www.googleapis.com/oauth2/v2/certs
       DISABLE_AUTH: 1

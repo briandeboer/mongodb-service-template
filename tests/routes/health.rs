@@ -3,7 +3,7 @@ mod health_tests {
     use actix_service::Service;
     use actix_web::{http::StatusCode, test, App};
     use bytes::Bytes;
-    use sample_project::routes::app_routes;
+    use {{crate_name}}::routes::app_routes;
 
     #[actix_rt::test]
     async fn test_pong() {

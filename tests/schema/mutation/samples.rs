@@ -5,7 +5,7 @@ mod test {
     use actix_web::{test, App};
     use insta::assert_snapshot;
     use mongodb_base_service::mock_time;
-    use sample_project::routes::app_routes;
+    use {{crate_name}}::routes::app_routes;
 
     use crate::schema::fragments;
 

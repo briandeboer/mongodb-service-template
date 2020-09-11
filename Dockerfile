@@ -20,10 +20,10 @@ RUN RUSTFLAGS='-C target-feature=-crt-static' cargo build
 COPY ./src ./src
 RUN RUSTFLAGS='-C target-feature=-crt-static' cargo build
 
-RUN cp ./target/debug/sample-project ./sample-project
+RUN cp ./target/debug/{{project-name}} ./{{project-name}}
 
 EXPOSE 8000
 
 # set the startup command to run your binary
 # CHANGE APP NAME BELOW
-CMD ["./sample-project"]
+CMD ["./{{project-name}}"]

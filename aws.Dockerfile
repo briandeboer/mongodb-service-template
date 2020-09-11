@@ -4,9 +4,9 @@ RUN apk update &&\
 
 WORKDIR /app
 
-COPY ./build/sample-project ./sample-project
+COPY ./build/{{project-name}} ./{{project-name}}
 
 EXPOSE 8080
 # set the startup command to run your binary
 # CHANGE APP NAME BELOW
-CMD ["./sample-project"]
+CMD ["./{{project-name}}"]

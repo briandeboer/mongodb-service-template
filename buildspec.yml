@@ -15,7 +15,7 @@ phases:
       - echo "Logging into Amazon ECR..."
       - $(aws ecr get-login --no-include-email --region ${AWS_DEFAULT_REGION})
       - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 7)"
-      - MD5="$(cat Cargo.lock | sed '/name = "sample-project"/!b;n;cversion = "1.0.0"' | md5sum | awk '{print $1;}')"
+      - MD5="$(cat Cargo.lock | sed '/name = "{{project-name}}"/!b;n;cversion = "1.0.0"' | md5sum | awk '{print $1;}')"
       - VERSION="$(cat Cargo.toml | grep '^version.*' | sed -E 's/.*"(.*)"/\1/')"
   build:
     commands:
@@ -23,7 +23,7 @@ phases:
       - echo "*** TEST ***"
       - echo "Attempting to pull test image tagged with $MD5"
       - scripts/build_test.sh
-      - docker run --network rust-sample-project_service -v $(pwd):/build "${REPOSITORY_URI}-test:$MD5" /build/scripts/test.sh
+      - docker run --network rust-{{project-name}}_service -v $(pwd):/build "${REPOSITORY_URI}-test:$MD5" /build/scripts/test.sh
       - scripts/package.sh
 reports:
   tests:

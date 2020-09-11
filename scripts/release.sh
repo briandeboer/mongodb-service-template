@@ -12,4 +12,4 @@ echo "Running test"
 RUSTFLAGS='-C target-feature=-crt-static' cargo build --release --locked --no-default-features
 
 echo "Copying release to build folder"
-cp /app/target/release/sample-project /build/build/sample-project
+cp /app/target/release/{{project-name}} /build/build/{{project-name}}

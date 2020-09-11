@@ -6,8 +6,8 @@ use std::io::prelude::*;
 use std::sync::Arc;
 use std::time::{Duration, SystemTime};
 
-use sample_project::db::Clients;
-use sample_project::schema::create_schema;
+use {{crate_name}}::db::Clients;
+use {{crate_name}}::schema::create_schema;
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -37,14 +37,14 @@ pub fn load_filled_database(config: &mut web::ServiceConfig) {
 
     let mongo_url = std::env::var("MONGO_URL").unwrap_or("mongodb://localhost:27017/".to_string());
     std::env::set_var("MONGO_URL", mongo_url);
-    let db_name = std::env::var("MONGO_DB_NAME").unwrap_or("sample-project-test".to_string());
+    let db_name = std::env::var("MONGO_DB_NAME").unwrap_or("{{project-name}}-test".to_string());
     std::env::set_var("MONGO_DB_NAME", db_name);
 
     // fix time to Jan 1, 2020 so that snapshots always have the same dateModified etc...
     mock_time::set_mock_time(SystemTime::UNIX_EPOCH + Duration::from_millis(1577836800000));
 
     let db_clients = Arc::new(Clients {
-        mongo: sample_project::db::mongo::connect(),
+        mongo: {{crate_name}}::db::mongo::connect(),
     });
 
     // drop and load current data
@@ -59,7 +59,7 @@ pub fn load_filled_database(config: &mut web::ServiceConfig) {
     });
 
     // load data
-    let samples: Vec<sample_project::models::Sample> =
+    let samples: Vec<{{crate_name}}::models::Sample> =
         get_data_from_file("./tests/mock/samples.json");
     let service = db_clients.mongo.get_mongo_service("samples").unwrap();
     let _result = service.insert_many(samples, None);

@@ -1,4 +1,4 @@
-extern crate sample_project;
+extern crate {{crate_name}};
 
 mod routes;
 mod schema;
