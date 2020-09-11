@@ -6,7 +6,7 @@ mod test {
     use insta::assert_snapshot;
     use mongodb_base_service::mock_time;
     use {{crate_name}}::routes::app_routes;
-
+    {% raw %}
     use crate::schema::fragments;
 
     #[actix_rt::test]
@@ -275,5 +275,5 @@ mod test {
             "remove_value_from_sample_existing_non_existing",
             format!("{:?}", resp)
         );
-    }
+    }{% endraw %}
 }
