@@ -7,7 +7,7 @@ mod test {
     use {{crate_name}}::routes::app_routes;
 
     use crate::schema::fragments;
-
+    {% raw %}
     #[actix_rt::test]
     async fn all_samples() {
         std::env::set_var("BASE_PATH", "test_path");
@@ -308,5 +308,5 @@ mod test {
 
         let resp = test::read_response(&mut app, req).await;
         assert_snapshot!("sample_by_names_missing", format!("{:?}", resp));
-    }
+    }{% endraw %}
 }

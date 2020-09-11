@@ -8,7 +8,7 @@ mod test {
     use {{crate_name}}::routes::app_routes;
 
     use crate::schema::fragments;
-
+    {% raw %}
     #[actix_rt::test]
     async fn create_sample() {
         std::env::set_var("BASE_PATH", "test_path");
@@ -24,7 +24,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "createSample",
             query: &format!(
-                {% raw %}
                 r#"
                 mutation createSample {{
                     createSample(
@@ -39,7 +38,6 @@ mod test {
                         {sample_fragment}  
                     }}
                 }}"#,
-                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -59,7 +57,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "allSamples",
             query: &format!(
-                {% raw %}
                 r#"
                 query allSamples {{
                     allSamples(limit: 5, after: null, before: null) {{
@@ -70,7 +67,6 @@ mod test {
                         }}
                     }}
                 }}"#,
-                {% endraw %}
                 page_info_fragment = fragments::page_info(),
                 sample_fragment = fragments::sample()
             ),
@@ -99,7 +95,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "createSample",
             query: &format!(
-                {% raw %}
                 r#"
                 mutation createSample {{
                     createSample(
@@ -114,7 +109,6 @@ mod test {
                         {sample_fragment}  
                     }}
                 }}"#,
-                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -146,7 +140,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
-                {% raw %}
                 r#"
                 mutation updateSample {{
                     updateSample(
@@ -159,7 +152,6 @@ mod test {
                         {sample_fragment}  
                     }}
                 }}"#,
-                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -191,7 +183,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
-                {% raw %}
                 r#"
                 mutation updateSample {{
                     updateSample(
@@ -204,7 +195,6 @@ mod test {
                         {sample_fragment}  
                     }}
                 }}"#,
-                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -233,7 +223,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
-                {% raw %}
                 r#"
                 mutation updateSample {{
                     updateSample(
@@ -247,7 +236,6 @@ mod test {
                         {sample_fragment}  
                     }}
                 }}"#,
-                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -276,7 +264,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "deleteSample",
             query: &format!(
-                {% raw %}
                 r#"
                 mutation deleteSample {{
                     deleteSample(
@@ -286,7 +273,6 @@ mod test {
                         success
                     }}
                 }}"#,
-                {% endraw %}
             ),
         };
 
@@ -302,7 +288,6 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "allSamples",
             query: &format!(
-                {% raw %}
                 r#"
                 query allSamples {{
                     allSamples(limit: 5, after: null, before: null) {{
@@ -313,7 +298,6 @@ mod test {
                         }}
                     }}
                 }}"#,
-                {% endraw %}
                 page_info_fragment = fragments::page_info(),
                 sample_fragment = fragments::sample()
             ),
@@ -325,5 +309,5 @@ mod test {
 
         let resp = test::read_response(&mut app, req).await;
         assert_snapshot!("delete_sample_all_samples", format!("{:?}", resp));
-    }
+    }{% endraw %}
 }
