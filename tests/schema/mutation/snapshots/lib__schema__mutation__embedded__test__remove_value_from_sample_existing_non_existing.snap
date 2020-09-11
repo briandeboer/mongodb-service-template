@@ -1,0 +1,5 @@
+---
+source: tests/schema/mutation/embedded.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"data\":{\"removeValueFromSample\":{\"id\":\"NO_OBJECT\",\"success\":true}}}"

@@ -1,0 +1,5 @@
+---
+source: tests/schema/mutation/embedded.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"data\":{\"updateValueForSample\":{\"id\":\"$oid:5f192d9900e0306000d188e1\",\"dateCreated\":\"2020-01-01T00:00:00+00:00\",\"dateModified\":\"2020-01-01T00:00:00+00:00\",\"name\":\"Sample 1\",\"description\":\"This is the first sample - ACTIVE\",\"values\":[{\"id\":\"44514a55-2abd-4388-8f77-b96b0b25fc30\",\"dateModified\":\"2020-07-23T06:26:33+00:00\",\"embeddedType\":\"ONE\",\"value\":0.3},{\"id\":\"44514a55-2abd-4388-8f77-b96b0b25fc31\",\"dateModified\":\"2020-07-23T06:26:33+00:00\",\"embeddedType\":\"ANOTHER\",\"value\":0.5}]}}}"
