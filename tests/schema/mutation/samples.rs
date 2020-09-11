@@ -1,3 +1,6 @@
+{% assign lbrace = "{" %}
+{% assign rbrace = "}" %}
+
 #[cfg(test)]
 mod test {
     use crate::utils;
@@ -5,7 +8,7 @@ mod test {
     use actix_web::{test, App};
     use insta::assert_snapshot;
     use mongodb_base_service::mock_time;
-    use {{crate_name}}::routes::app_routes;
+    use {% lbrace %}crate_name{% rbrace %}::routes::app_routes;
 
     use crate::schema::fragments;
 
@@ -24,22 +27,20 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "createSample",
             query: &format!(
-                {% raw %}
                 r#"
-                mutation createSample {{
+                mutation createSample {% lbrace %}
                     createSample(
-                        newSample: {{
+                        newSample: {% lbrace %}
                             id: "$oid:5f5be6b800ca625d0066cf3e"
                             name: "Brand New Name"
                             description: "Brand New Description"
                             availableDate: 1
                             expirationDate: 2147483647
-                        }}
-                    ) {{
+                        {% rbrace %}
+                    ) {% lbrace %}
                         {sample_fragment}  
-                    }}
-                }}"#,
-                {% endraw %}
+                    {% rbrace %}
+                {% rbrace %}"#,
                 sample_fragment = fragments::sample()
             ),
         };
@@ -59,18 +60,16 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "allSamples",
             query: &format!(
-                {% raw %}
                 r#"
-                query allSamples {{
-                    allSamples(limit: 5, after: null, before: null) {{
+                query allSamples {% lbrace %}
+                    allSamples(limit: 5, after: null, before: null) {% lbrace %}
                         totalCount
                         {page_info_fragment}
-                        items {{
+                        items {% lbrace %}
                             {sample_fragment}
-                        }}
-                    }}
-                }}"#,
-                {% endraw %}
+                        {% rbrace %}
+                    {% rbrace %}
+                {% rbrace %}"#,
                 page_info_fragment = fragments::page_info(),
                 sample_fragment = fragments::sample()
             ),
@@ -99,22 +98,20 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "createSample",
             query: &format!(
-                {% raw %}
                 r#"
-                mutation createSample {{
+                mutation createSample {% lbrace %}
                     createSample(
-                        newSample: {{
+                        newSample: {% lbrace %}
                             id: "$oid:5f192d9900e0306000d188e1"
                             name: "Brand New Name"
                             description: "Brand New Description"
                             availableDate: 1
                             expirationDate: 2147483647
-                        }}
-                    ) {{
+                        {% rbrace %}
+                    ) {% lbrace %}
                         {sample_fragment}  
-                    }}
-                }}"#,
-                {% endraw %}
+                    {% rbrace %}
+                {% rbrace %}"#,
                 sample_fragment = fragments::sample()
             ),
         };
@@ -146,20 +143,18 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
-                {% raw %}
                 r#"
-                mutation updateSample {{
+                mutation updateSample {% lbrace %}
                     updateSample(
                         id: "$oid:5f192d9900e0306000d188e1"
-                        updateSample: {{
+                        updateSample: {% lbrace %}
                             name: "New Name"
                             description: "New Description"
-                        }}
-                    ) {{
+                        {% rbrace %}
+                    ) {% lbrace %}
                         {sample_fragment}  
-                    }}
-                }}"#,
-                {% endraw %}
+                    {% rbrace %}
+                {% rbrace %}"#,
                 sample_fragment = fragments::sample()
             ),
         };
@@ -191,20 +186,18 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
-                {% raw %}
                 r#"
-                mutation updateSample {{
+                mutation updateSample {% lbrace %}
                     updateSample(
                         id: "$oid:NO_OBJECT"
-                        updateSample: {{
+                        updateSample: {% lbrace %}
                             name: "New Name"
                             description: "New Description"
-                        }}
-                    ) {{
+                        {% rbrace %}
+                    ) {% lbrace %}
                         {sample_fragment}  
-                    }}
-                }}"#,
-                {% endraw %}
+                    {% rbrace %}
+                {% rbrace %}"#,
                 sample_fragment = fragments::sample()
             ),
         };
@@ -233,21 +226,19 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
-                {% raw %}
                 r#"
-                mutation updateSample {{
+                mutation updateSample {% lbrace %}
                     updateSample(
                         id: "$oid:5f192d9900e0306000d188e1"
-                        updateSample: {{
+                        updateSample: {% lbrace %}
                             thisFieldDoesNotExist: "something"
                             name: "New Name"
                             description: "New Description"
-                        }}
-                    ) {{
+                        {% rbrace %}
+                    ) {% lbrace %}
                         {sample_fragment}  
-                    }}
-                }}"#,
-                {% endraw %}
+                    {% rbrace %}
+                {% rbrace %}"#,
                 sample_fragment = fragments::sample()
             ),
         };
@@ -276,17 +267,15 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "deleteSample",
             query: &format!(
-                {% raw %}
                 r#"
-                mutation deleteSample {{
+                mutation deleteSample {% lbrace %}
                     deleteSample(
                         id: "$oid:5f192d9900e0306000d188e1"
-                    ) {{
+                    ) {% lbrace %}
                         id
                         success
-                    }}
-                }}"#,
-                {% endraw %}
+                    {% rbrace %}
+                {% rbrace %}"#,
             ),
         };
 
@@ -302,18 +291,16 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "allSamples",
             query: &format!(
-                {% raw %}
                 r#"
-                query allSamples {{
-                    allSamples(limit: 5, after: null, before: null) {{
+                query allSamples {% lbrace %}
+                    allSamples(limit: 5, after: null, before: null) {% lbrace %}
                         totalCount
                         {page_info_fragment}
-                        items {{
+                        items {% lbrace %}
                             {sample_fragment}
-                        }}
-                    }}
-                }}"#,
-                {% endraw %}
+                        {% rbrace %}
+                    {% rbrace %}
+                {% rbrace %}"#,
                 page_info_fragment = fragments::page_info(),
                 sample_fragment = fragments::sample()
             ),
