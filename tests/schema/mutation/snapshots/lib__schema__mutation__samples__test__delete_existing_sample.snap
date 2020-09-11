@@ -1,0 +1,5 @@
+---
+source: tests/schema/mutation/samples.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"data\":{\"deleteSample\":{\"id\":\"$oid:5f192d9900e0306000d188e1\",\"success\":true}}}"

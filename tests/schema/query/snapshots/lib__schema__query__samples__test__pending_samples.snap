@@ -1,0 +1,5 @@
+---
+source: tests/schema/query/samples.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"data\":{\"samplesByStatus\":{\"totalCount\":1,\"pageInfo\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":\"MQAAABJub2RlLmRhdGVfY3JlYXRlZAAA4QteAAAAAAdfaWQAXxktmQDgMGAA0YjkAA==\",\"nextCursor\":\"MQAAABJub2RlLmRhdGVfY3JlYXRlZAAA4QteAAAAAAdfaWQAXxktmQDgMGAA0YjkAA==\"},\"items\":[{\"id\":\"$oid:5f192d9900e0306000d188e4\",\"dateCreated\":\"2020-01-01T00:00:00+00:00\",\"dateModified\":\"2020-01-01T00:00:00+00:00\",\"name\":\"Sample 4\",\"description\":\"This is the fourth sample - IN THE FUTURE\",\"values\":[{\"id\":\"44514a55-2abd-4388-8f77-b96b0b25fc37\",\"dateModified\":\"2020-07-23T06:26:33+00:00\",\"embeddedType\":\"ONE\",\"value\":0.7}]}]}}}"

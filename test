@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+cargo test --jobs=1 -- --test-threads=1 --nocapture

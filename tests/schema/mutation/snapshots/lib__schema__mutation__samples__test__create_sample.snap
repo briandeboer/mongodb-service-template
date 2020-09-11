@@ -1,0 +1,5 @@
+---
+source: tests/schema/mutation/samples.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"data\":{\"createSample\":{\"id\":\"$oid:5f5be6b800ca625d0066cf3e\",\"dateCreated\":\"2020-01-01T00:00:10+00:00\",\"dateModified\":\"2020-01-01T00:00:10+00:00\",\"name\":\"Brand New Name\",\"description\":\"Brand New Description\",\"values\":null}}}"

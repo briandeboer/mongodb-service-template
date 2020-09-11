@@ -1,0 +1,29 @@
+version: "3"
+services:
+  sample-project:
+    image: sample-project:latest
+    ports:
+      - 8084:8000
+    environment:
+      PORT: 8000
+      API_BASE: http://localhost:8084
+      MONGO_URL: mongodb://mongo:27017/
+      MONGO_DB_NAME: sample-project
+      RUST_LOG: info,surf=warn,actix_web=info
+      BASE_PATH: sample-project
+      VERSION: v1
+      CERTS: https://www.googleapis.com/oauth2/v2/certs
+      DISABLE_AUTH: 1
+    networks:
+      - service
+  mongo:
+    image: 981873564135.dkr.ecr.us-east-1.amazonaws.com/mongo:latest
+    ports:
+      - 27084:27017
+    networks:
+      - service
+networks:
+  service:
+    driver: bridge
+
+    

@@ -1,0 +1,5 @@
+---
+source: tests/schema/mutation/samples.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"data\":null,\"errors\":[{\"message\":\"An error occurred when trying to execute a write operation: WriteError(WriteError { code: 11000, code_name: None, message: \\\"E11000 duplicate key error collection: sample-project-test.samples index: _id_ dup key: { _id: ObjectId(\\\\'5f192d9900e0306000d188e1\\\\') }\\\" })\",\"locations\":[{\"line\":3,\"column\":21}],\"path\":[\"createSample\"]}]}"

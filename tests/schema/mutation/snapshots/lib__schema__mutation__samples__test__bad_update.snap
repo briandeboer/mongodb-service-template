@@ -1,0 +1,5 @@
+---
+source: tests/schema/mutation/samples.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"errors\":[{\"message\":\"Invalid value for argument \\\"updateSample\\\", expected type \\\"UpdateSample!\\\"\",\"locations\":[{\"line\":5,\"column\":39}]}]}"

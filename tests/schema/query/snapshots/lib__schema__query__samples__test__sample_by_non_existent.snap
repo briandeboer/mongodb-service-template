@@ -1,0 +1,5 @@
+---
+source: tests/schema/query/samples.rs
+expression: "format!(\"{:?}\", resp)"
+---
+b"{\"data\":null,\"errors\":[{\"message\":\"Unable to find item\",\"locations\":[{\"line\":3,\"column\":21}],\"path\":[\"sampleById\"]}]}"
