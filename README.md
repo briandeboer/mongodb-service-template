@@ -1,55 +1,62 @@
 # Sample Service
 
 ## Getting Started
+
 - Install [Rust](https://www.rust-lang.org/tools/install)
 - Run `cargo run` to build and run service
 
-
 ### Install Docker and Docker Compose (Optional)
+
 - [Docker](https://docs.docker.com/engine/install/)
 - [docker-compose](https://docs.docker.com/compose/install/)
 
-
 ### Start Mongo
+
 You can skip this step if you prefer to run a local Mongo instance.
 
 Using docker-compose
-```
+
+```sh
 docker-compose up -d mongo
 ```
-In the future you can run `docker start mongo` to relaunch the service.
 
+In the future you can run `docker start mongo` to relaunch the service.
 
 ## VSCode
 
 ### Plugins
+
 - Better TOML
 - Native Debug
 - Rust
 - rust-analyzer
 
 ### Debugging
-Run debug (F5) to create a **`launch.json`** file, make sure the value of **target** is pointed to your built executable, usually `./target/rust-deps/debug/{{project-name}}` unless you changed `$CARGO_TARGET_DIR`
 
+Run debug (F5) to create a **`launch.json`** file, make sure the value of **target** is pointed to your built executable, usually `./target/rust-deps/debug/{{project-name}}` unless you changed `$CARGO_TARGET_DIR`
 
 ## Graphiql
 
-- http://localhost:8084/{{project-name}}/graphiql
+- [http://localhost:8084/{{project-name}}/graphiql](http://localhost:8084/{{project-name}}/graphiql)
 
 ## Docker
+
 You can run the service with docker-compose. It currently doesn't take into consideration the login-service, but that is something to look into the best way to accomplish.
 
-### Build:
-```
+### Build
+
+```sh
 docker build -t {{project-name}}:latest .
 ```
 
 ### Run
-```
+
+```sh
 docker-compose up -d
 ```
 
 ## Tests
+
 In order to run tests against graphql you will need to have a local runnning mongo server on port 27017. You can use docker-compose or whatever method you want to have that. It will automatically create a new database just for tests named `{{project-name}}-test`. In order for your test to leverage the database you should configure your test app with the `load-filled-database`. That will read all mock data from the `tests/mock` folder and insert them into the database. Here's an example...
 
 ```rust
@@ -70,7 +77,6 @@ For more information, look at the `schema/query/users.rs` tests. For most tests,
 ```sh
 cargo install cargo-insta
 ```
-
 
 To run the tests first make sure that you have mongo running on local port 27084 or use docker-compose:
 
@@ -94,7 +100,7 @@ For some snapshot tests you'll need to lock SystemTime to a fixed number to prev
 
 ```rust
 // fix time to Jan 1, 2020 so that snapshots always have the same date_created, etc...
-mock_time::set_mock_time(SystemTime::UNIX_EPOCH + Duration::from_millis(1577836800000)); 
+mock_time::set_mock_time(SystemTime::UNIX_EPOCH + Duration::from_millis(1577836800000));
 ```
 
 Or if you need to increase the time to verify that the `date_modified` has changed:
