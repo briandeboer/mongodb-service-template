@@ -1,5 +1,4 @@
-{% assign lbrace = "{" %}
-{% assign rbrace = "}" %}
+{%assign lbrace = "{"%}
 
 #[cfg(test)]
 mod test {
@@ -8,7 +7,7 @@ mod test {
     use actix_web::{test, App};
     use insta::assert_snapshot;
     use mongodb_base_service::mock_time;
-    use {% lbrace %}crate_name{% rbrace %}::routes::app_routes;
+    use {{crate_name}}::routes::app_routes;
 
     use crate::schema::fragments;
 
