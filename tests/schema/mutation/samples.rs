@@ -1,5 +1,3 @@
-{%assign lbrace = "{"%}
-
 #[cfg(test)]
 mod test {
     use crate::utils;
@@ -26,20 +24,22 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "createSample",
             query: &format!(
+                {% raw %}
                 r#"
-                mutation createSample {% lbrace %}
+                mutation createSample {{
                     createSample(
-                        newSample: {% lbrace %}
+                        newSample: {{
                             id: "$oid:5f5be6b800ca625d0066cf3e"
                             name: "Brand New Name"
                             description: "Brand New Description"
                             availableDate: 1
                             expirationDate: 2147483647
-                        {% rbrace %}
-                    ) {% lbrace %}
+                        }}
+                    ) {{
                         {sample_fragment}  
-                    {% rbrace %}
-                {% rbrace %}"#,
+                    }}
+                }}"#,
+                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -59,16 +59,18 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "allSamples",
             query: &format!(
+                {% raw %}
                 r#"
-                query allSamples {% lbrace %}
-                    allSamples(limit: 5, after: null, before: null) {% lbrace %}
+                query allSamples {{
+                    allSamples(limit: 5, after: null, before: null) {{
                         totalCount
                         {page_info_fragment}
-                        items {% lbrace %}
+                        items {{
                             {sample_fragment}
-                        {% rbrace %}
-                    {% rbrace %}
-                {% rbrace %}"#,
+                        }}
+                    }}
+                }}"#,
+                {% endraw %}
                 page_info_fragment = fragments::page_info(),
                 sample_fragment = fragments::sample()
             ),
@@ -97,20 +99,22 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "createSample",
             query: &format!(
+                {% raw %}
                 r#"
-                mutation createSample {% lbrace %}
+                mutation createSample {{
                     createSample(
-                        newSample: {% lbrace %}
+                        newSample: {{
                             id: "$oid:5f192d9900e0306000d188e1"
                             name: "Brand New Name"
                             description: "Brand New Description"
                             availableDate: 1
                             expirationDate: 2147483647
-                        {% rbrace %}
-                    ) {% lbrace %}
+                        }}
+                    ) {{
                         {sample_fragment}  
-                    {% rbrace %}
-                {% rbrace %}"#,
+                    }}
+                }}"#,
+                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -142,18 +146,20 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
+                {% raw %}
                 r#"
-                mutation updateSample {% lbrace %}
+                mutation updateSample {{
                     updateSample(
                         id: "$oid:5f192d9900e0306000d188e1"
-                        updateSample: {% lbrace %}
+                        updateSample: {{
                             name: "New Name"
                             description: "New Description"
-                        {% rbrace %}
-                    ) {% lbrace %}
+                        }}
+                    ) {{
                         {sample_fragment}  
-                    {% rbrace %}
-                {% rbrace %}"#,
+                    }}
+                }}"#,
+                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -185,18 +191,20 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
+                {% raw %}
                 r#"
-                mutation updateSample {% lbrace %}
+                mutation updateSample {{
                     updateSample(
                         id: "$oid:NO_OBJECT"
-                        updateSample: {% lbrace %}
+                        updateSample: {{
                             name: "New Name"
                             description: "New Description"
-                        {% rbrace %}
-                    ) {% lbrace %}
+                        }}
+                    ) {{
                         {sample_fragment}  
-                    {% rbrace %}
-                {% rbrace %}"#,
+                    }}
+                }}"#,
+                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -225,19 +233,21 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "updateSample",
             query: &format!(
+                {% raw %}
                 r#"
-                mutation updateSample {% lbrace %}
+                mutation updateSample {{
                     updateSample(
                         id: "$oid:5f192d9900e0306000d188e1"
-                        updateSample: {% lbrace %}
+                        updateSample: {{
                             thisFieldDoesNotExist: "something"
                             name: "New Name"
                             description: "New Description"
-                        {% rbrace %}
-                    ) {% lbrace %}
+                        }}
+                    ) {{
                         {sample_fragment}  
-                    {% rbrace %}
-                {% rbrace %}"#,
+                    }}
+                }}"#,
+                {% endraw %}
                 sample_fragment = fragments::sample()
             ),
         };
@@ -266,15 +276,17 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "deleteSample",
             query: &format!(
+                {% raw %}
                 r#"
-                mutation deleteSample {% lbrace %}
+                mutation deleteSample {{
                     deleteSample(
                         id: "$oid:5f192d9900e0306000d188e1"
-                    ) {% lbrace %}
+                    ) {{
                         id
                         success
-                    {% rbrace %}
-                {% rbrace %}"#,
+                    }}
+                }}"#,
+                {% endraw %}
             ),
         };
 
@@ -290,16 +302,18 @@ mod test {
         let query = utils::GqlQuery {
             operation_name: "allSamples",
             query: &format!(
+                {% raw %}
                 r#"
-                query allSamples {% lbrace %}
-                    allSamples(limit: 5, after: null, before: null) {% lbrace %}
+                query allSamples {{
+                    allSamples(limit: 5, after: null, before: null) {{
                         totalCount
                         {page_info_fragment}
-                        items {% lbrace %}
+                        items {{
                             {sample_fragment}
-                        {% rbrace %}
-                    {% rbrace %}
-                {% rbrace %}"#,
+                        }}
+                    }}
+                }}"#,
+                {% endraw %}
                 page_info_fragment = fragments::page_info(),
                 sample_fragment = fragments::sample()
             ),
